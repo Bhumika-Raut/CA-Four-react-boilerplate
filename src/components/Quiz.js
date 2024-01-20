@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { data } from '../data';
 
+// changed question.js to data also arrangement to reduce complexity
 
 const Quiz = () => {
   const [index, setIndex] = useState(0);
@@ -11,6 +12,8 @@ const Quiz = () => {
   const [isHighlighted, setIsHighlighted] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // declarations for particular fields
+
   const Option1 = useRef(null);
   const Option2 = useRef(null);
   const Option3 = useRef(null);
@@ -18,6 +21,7 @@ const Quiz = () => {
 
   let option_array = [Option1, Option2, Option3, Option4];
 
+  // checking if ans are correct and thereby adding the scores
   const checkAns = (e, ans) => {
     if (lock === false) {
       if (question.ans === ans) {
@@ -29,6 +33,7 @@ const Quiz = () => {
       }
       setLock(true);
     }
+    // locked the state to avoid resubmission of answers
 
     setTimeout(() => {
       option_array.forEach((optionRef) => {
@@ -46,6 +51,7 @@ const Quiz = () => {
       }
     }, 1000);
   };
+  // time interval to change the question
 
   const resetQuiz = () => {
     setIndex(0);
@@ -53,21 +59,26 @@ const Quiz = () => {
     setScore(0);
     setResult(false);
   };
+  // quiz reset
 
   const calculatePercentage = () => {
     return ((score / data.length) * 100).toFixed(2);
   };
+  //  percentage calculation
 
   const handleHighlight = () => {
     setIsHighlighted(true);
   };
+  // for highlight
 
   const handleRemoveHighlight = () => {
     setIsHighlighted(false);
   };
+  // to remove highlight
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
+    // darkmode
   };
 
   return (
@@ -90,6 +101,7 @@ const Quiz = () => {
           </button>
         </div>
       ) : (
+        // result and darkmode
         <>
         
           <h1>
@@ -113,6 +125,7 @@ const Quiz = () => {
               {question.option4}
             </li>
           </ul>
+          
 
           <div className='index'>{index + 1} of {data.length} questions</div>
 
@@ -129,5 +142,7 @@ const Quiz = () => {
     </div>
   );
 };
+// line 101 to 128 is for printing questions, answers etc.
+// highlight buttons from line 132 to 137
 
 export default Quiz;
