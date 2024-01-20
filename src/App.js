@@ -2,7 +2,7 @@
 import "./App.css";
 // import questions from "./questions";
 // import Result from "./components/Result";
-import QuestionBox from "./components/QuestionBox";
+import Quiz from "./components/Quiz";
 
 
 
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <QuestionBox/>
+      <Quiz/>
     </div>
   );
 }
